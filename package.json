@@ -1,0 +1,73 @@
+{
+  "name": "autopub",
+  "displayName": "autopub",
+  "description": "quick autopub web or java application",
+  "version": "1.6.0",
+  "engines": {
+    "vscode": "^1.66.6"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./src/index.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "myExtension.myCommand",
+        "title": "111"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pubview",
+          "title": "发布应用",
+          "icon": "$(rocket)"       
+        }
+      ]
+    },
+    "views": {
+      "pubview": [        
+
+        {
+          "id": "project", 
+          "name": "project",
+          "type": "tree"
+        },
+        {
+          "id": "docker",
+          "name": "docker"
+        }
+      ]
+    }
+   
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "pnpm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "publisher": "larry",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.66.6",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "simple-git": "^3.18.0"
+  }
+}
