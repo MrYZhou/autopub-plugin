@@ -56,6 +56,7 @@
     "type": "git",
     "url": ""
   },
+  "keywords":["publish","ci/cd", "tool"],
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
