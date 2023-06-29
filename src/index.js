@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+const objs = require('./export')
 
 function activate(context) {
   console.log(11);
@@ -18,6 +19,11 @@ function activate(context) {
 
   // 将命令和按钮注册到上下文中，以便在插件被停用时进行清理
   context.subscriptions.push(myButton, disposable);
+
+  // 注册命令
+  for (let obj of objs) {
+    obj.registe()
+  }
 }
 
 function deactivate() {
