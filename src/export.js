@@ -17,8 +17,9 @@ function getFiles(dir) {
 
 const files = getFiles(config.url);
 let modules = []
+let test = true
 files.forEach(moduleName => {
-  let module = require(`./${moduleName}`)
+  let module = require(test ? `${moduleName}` : './command')
   modules.push(new module());
 })
 module.exports = modules;
