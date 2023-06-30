@@ -2,11 +2,10 @@ const vscode = require('vscode');
 const objs = require('./export')
 
 function activate(context) {
-  console.log(11);
-  // 创建一个活动栏按钮
+  // 创建一个活动栏按钮,点击后跳到部署控制台
   const myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
-  myButton.text = "$(star) My Button";
-  myButton.tooltip = "Click to run my command";
+  myButton.text = "$(star) AutoPub Panel";
+  myButton.tooltip = "Click to show AutoPub Panel";
   myButton.command = "myExtension.myCommand";
   myButton.show();
   
@@ -28,6 +27,8 @@ function activate(context) {
 
 function deactivate() {
   // 执行插件的清理逻辑
+  // 关闭服务
+  // 提示关闭成功
 }
 
 module.exports = {
