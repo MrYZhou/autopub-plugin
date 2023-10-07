@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const Base = require('../base');
-module.exports = class B extends Base{
+module.exports = class TreeStatusBar extends Base{
   registe(context) {
     super.tip('树视图注册')
     // 创建一个活动栏按钮,点击后跳到部署控制台

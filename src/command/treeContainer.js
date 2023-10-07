@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const Base = require('../base');
-module.exports = class treeConTainer extends Base{
+module.exports = class TreeConTainer extends Base{
   registe(context) {
     
   }
