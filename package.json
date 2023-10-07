@@ -17,8 +17,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "myExtension.myCommand",
-        "title": "111"
+        "command": "myExtension.showPubPanel",
+        "title": "部署面板"
       }
     ],
     "viewsContainers": {
