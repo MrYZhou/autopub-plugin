@@ -17,7 +17,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "myExtension.showPubPanel",
+        "command": "autopub.showPubPanel",
         "title": "部署面板"
       }
     ],
@@ -26,25 +26,30 @@
         {
           "id": "pubview",
           "title": "发布应用",
-          "icon": "$(rocket)"       
+          "icon": "$(rocket)"
         }
       ]
     },
     "views": {
-      "pubview": [        
-
+      "pubview": [
         {
-          "id": "project", 
-          "name": "project",
+          "id": "project",
+          "name": "项目",
           "type": "tree"
         },
         {
           "id": "docker",
-          "name": "docker"
+          "name": "容器"
         }
       ]
-    }
-   
+    },
+    "view/title": [
+      {
+        "command": "autopub.refreshData",
+        "when": "view == project",
+        "group": "navigation"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
@@ -56,7 +61,11 @@
     "type": "git",
     "url": ""
   },
-  "keywords":["publish","ci/cd", "tool"],
+  "keywords": [
+    "publish",
+    "ci/cd",
+    "tool"
+  ],
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
