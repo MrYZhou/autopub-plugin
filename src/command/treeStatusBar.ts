@@ -1,8 +1,8 @@
-const vscode = require('vscode');
-const Base = require('../base');
+import * as vscode from 'vscode';
+import { Base } from "../base";
 module.exports = class TreeStatusBar extends Base{
-  registe(context) {
-    super.tip('树视图注册')
+  registe(context: any) {
+    super.tip('树视图注册2')
     // 创建一个活动栏按钮,点击后跳到部署控制台
     const myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
     myButton.text = "$(star) AutoPub Panel";

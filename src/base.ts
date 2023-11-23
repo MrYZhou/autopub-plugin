@@ -2,8 +2,8 @@
 
 const config = require('./config')
 
-module.exports =  class Base {
-  tip(msg){
+export class Base {
+  tip(msg: any){
     if(config.test){
       console.log(msg);
     }

@@ -1,6 +1,6 @@
 {
   "name": "autopub",
-  "displayName": "autopub",
+  "displayName": "AutoPub",
   "description": "quick autopub web or java application",
   "version": "1.7.0",
   "engines": {
@@ -9,11 +9,21 @@
   "categories": [
     "Other"
   ],
+  "publisher": "larry",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "publish",
+    "ci/cd",
+    "tool"
+  ],
   "icon": "icon.png",
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./src/index.js",
+  "main": "./out/index.js",
   "contributes": {
     "commands": [
       {
@@ -52,32 +62,23 @@
     ]
   },
   "scripts": {
-    "lint": "eslint .",
-    "pretest": "pnpm run lint",
-    "test": "node ./test/runTest.js"
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
   },
-  "publisher": "larry",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "keywords": [
-    "publish",
-    "ci/cd",
-    "tool"
-  ],
   "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@types/vscode": "^1.66.6",
-    "@vscode/test-electron": "^2.3.0",
-    "eslint": "^8.39.0",
-    "glob": "^8.1.0",
+    "@types/vscode": "^1.84.0",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
     "mocha": "^10.2.0",
-    "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "simple-git": "^3.18.0"
+    "typescript": "^5.2.2",
+    "@vscode/test-electron": "^2.3.6"
   }
 }

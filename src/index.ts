@@ -1,6 +1,6 @@
 const modules = require('./export')
 
-function activate(context) {
+function activate(context: any) {
   for (let module of modules) {
     module.registe(context)
   }
