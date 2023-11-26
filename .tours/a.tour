@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "程序入口",
+  "steps": [
+    {
+      "file": "src/index.ts",
+      "description": "程序入口",
+      "line": 7
+    }
+  ]
+}
