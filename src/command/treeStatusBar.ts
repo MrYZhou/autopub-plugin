@@ -17,6 +17,6 @@ module.exports = class TreeStatusBar {
     context.subscriptions.push(myButton, disposable);
   }
   unload(){
-    Base.tip('')
+    Base.tip('清理树视图2')
   }
 }

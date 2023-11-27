@@ -9,7 +9,7 @@ let actions: Promise<any>[] = []
 for (let index = 0; index < files.length; index++) {
   actions.push(new Promise((res, rej) => {
     let module = require(path.join(url,`${files[index]}.js`))
-    res(modules.push(new module()))
+    res(modules[index] = new module())
   }))
 }
 
