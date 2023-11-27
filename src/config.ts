@@ -2,6 +2,6 @@
 
 let config = {
   // 测试环境
-  test: true
+  test: false
 }
 module.exports = config

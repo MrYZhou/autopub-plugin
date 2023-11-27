@@ -1,0 +1,12 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "注册逻辑",
+  "steps": [
+    {
+      "file": "src/export.ts",
+      "description": "使用注册表替代动态获取",
+      "line": 5
+    }
+  ],
+  "ref": "master"
+}
