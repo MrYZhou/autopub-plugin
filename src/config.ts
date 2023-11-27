@@ -1,7 +1,11 @@
-
-
+const fs = require('fs')
+const path = require('path')
 let config = {
-  // 测试环境
   test: false
 }
+if(fs.existsSync(path.join(__dirname,'./env.js'))){
+  let env = require('./env')
+  config = {...config,...env}
+}
+
 module.exports = config
