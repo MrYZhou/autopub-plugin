@@ -18,16 +18,18 @@ function getFiles(dir: any) {
   return files;
 }
 let url = path.join(__dirname, 'command')
+
 const files = getFiles(url);
+
 let modules: any[] = []
-files.forEach(moduleName => {
-  try {
-    Base.time('导入模块1');
+let actions: Promise<any>[] = []
+for (let index = 0; index < files.length; index++) {
+  actions.push(new Promise((res, rej) => {
+    const moduleName = files[index];
     let module = require(config.test ? `${moduleName}` : './command')
-    modules.push(new module());
-    Base.timeEnd('导入模块1');
-  } catch (error) {
-    console.log('err', error);
-  }
-})
+    res(modules.push(new module()))
+  }))
+}
+
+Promise.all([...actions])
 module.exports = modules;
