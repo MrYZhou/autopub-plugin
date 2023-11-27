@@ -2,9 +2,9 @@
 import * as vscode from 'vscode';
 import { Base } from "../base";
 import { TreeDataProvider, TreeItem, TreeItemCollapsibleState, ProviderResult, window  } from "vscode";
-module.exports = class TreeConTainer extends Base  {
+module.exports = class TreeConTainer {
   registe(context: any) {
-    super.tip('树视图注册')
+    Base.tip('树视图注册')
     // 项目信息数据初始化
     let projectData = new ProjectDataProvider()
     vscode.window.registerTreeDataProvider(
@@ -16,7 +16,7 @@ module.exports = class TreeConTainer extends Base  {
     });
   }
   unload() {
-    super.tip('清理树视图')
+    Base.tip('清理树视图')
   }
 }
 class ProjectDataProvider implements TreeDataProvider<any>{

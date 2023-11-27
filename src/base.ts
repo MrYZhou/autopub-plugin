@@ -16,7 +16,7 @@ export class Base {
     }
   }
  
-  tip(msg: any){
+  static tip(msg: any) {
     if(config.test){
       console.log(msg);
     }

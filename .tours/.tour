@@ -4,8 +4,23 @@
   "steps": [
     {
       "file": "src/export.ts",
-      "description": "使用注册表替代动态获取",
+      "description": "使用注册表替代动态获取,同时把最耗时的放在最前面",
       "line": 5
+    },
+    {
+      "file": "src/base.ts",
+      "description": "工具类,插件全局使用",
+      "line": 3
+    },
+    {
+      "file": "src/config.ts",
+      "description": "配置插件相关的属性",
+      "line": 3
+    },
+    {
+      "file": "src/export.ts",
+      "description": "模块导入涉及io操作会比较耗时，所以使用promise修饰导入的逻辑。后面使用并行导入。",
+      "line": 9
     }
   ],
   "ref": "master"

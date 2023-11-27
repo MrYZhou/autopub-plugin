@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import { Base } from "../base";
-module.exports = class TreeStatusBar extends Base{
+module.exports = class TreeStatusBar {
   registe(context: any) {
-    super.tip('树视图注册2')
+    Base.tip('树视图注册2')
     // 创建一个活动栏按钮,点击后跳到部署控制台
     const myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
     myButton.text = "$(star) AutoPub Panel";
@@ -17,6 +17,6 @@ module.exports = class TreeStatusBar extends Base{
     context.subscriptions.push(myButton, disposable);
   }
   unload(){
-    super.tip('')
+    Base.tip('')
   }
 }
