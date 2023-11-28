@@ -25,6 +25,16 @@
   ],
   "main": "./out/index.js",
   "contributes": {
+    "viewsWelcome": [
+      {
+        "view": "project",
+        "contents": "通过下面的按钮初始化一个项目\n[添加项目](command:nodeDependencies.addEntry)"
+      },
+      {
+        "view": "docker",
+        "contents": "运行的容器\n[Add Dependency](command:nodeDependencies.addEntry)"
+      }
+    ],
     "commands": [
       {
         "command": "autopub.showPubPanel",
