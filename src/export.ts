@@ -2,7 +2,10 @@
 const path = require('path');
 
 let url = path.join(__dirname, 'command')
-const files = ['treeContainer','gitJump','treeStatusBar']
+let files = ['treeContainer','gitJump','treeStatusBar']
+
+let testFiles=['dependentest']
+files = [...files,...testFiles]
 
 let modules: any[] = []
 let actions: Promise<any>[] = []
