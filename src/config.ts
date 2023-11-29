@@ -8,4 +8,4 @@ if(fs.existsSync(path.join(__dirname,'./env.js'))){
   config = {...config,...env}
 }
 
-export = config
+module.exports = config

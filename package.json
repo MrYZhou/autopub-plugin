@@ -2,7 +2,7 @@
   "name": "autopub",
   "displayName": "AutoPub",
   "description": "quick autopub web or java application",
-  "version": "1.7.0",
+  "version": "1.7.2",
   "engines": {
     "vscode": "^1.66.6"
   },
