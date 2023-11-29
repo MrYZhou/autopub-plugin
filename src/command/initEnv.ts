@@ -5,6 +5,6 @@ module.exports = class TreeStatusBar {
     Base.tip('环境初始化')
     
   }
-  unload() {
+  deactivate() {
   }
 }

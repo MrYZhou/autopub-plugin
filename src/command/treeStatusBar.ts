@@ -16,7 +16,7 @@ module.exports = class TreeStatusBar {
     // 将命令和按钮注册到上下文中，以便在插件被停用时进行清理
     context.subscriptions.push(myButton, disposable);
   }
-  unload(){
+  deactivate(){
     Base.tip('清理树视图2')
   }
 }

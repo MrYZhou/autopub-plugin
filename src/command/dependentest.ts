@@ -8,7 +8,7 @@ module.exports = class TreeStatusBar {
         treeDataProvider: new NodeDependenciesProvider("D://testnode")
       });
   }
-  unload(){
+  deactivate(){
     Base.tip('清理树视图2')
   }
 }

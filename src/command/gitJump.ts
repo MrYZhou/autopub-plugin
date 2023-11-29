@@ -49,7 +49,7 @@ module.exports = class TreeStatusBar {
     context.subscriptions.push(openRepository);
 
   }
-  unload(){
+  deactivate(){
     Base.tip('注销git jump')
   }
 }
