@@ -9,7 +9,7 @@ module.exports = class TreeStatusBar {
       });
   }
   deactivate(){
-    Base.tip('清理树视图2')
+    Base.tip('清理树视图3')
   }
 }
 
