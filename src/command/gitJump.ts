@@ -5,14 +5,13 @@ import { Base } from "../base";
 module.exports = class TreeStatusBar {
   registe(context: any) {
     Base.tip('github仓库跳转')
-    let initBtn = vscode.commands.registerCommand('gitbtn.initBtn', function () {
-      const myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-      myButton.tooltip = "Open RemoteRepository";
-      myButton.text = `$(github)`
-      myButton.color = 'white';
-      myButton.command = 'gitbtn.openRepository';
-      myButton.show();
-    });
+    // 显示按钮
+    const myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+    myButton.tooltip = "Open RemoteRepository";
+    myButton.text = `$(github)`
+    myButton.color = 'white';
+    myButton.command = 'gitbtn.openRepository';
+    myButton.show();
 
 
     let openRepository = vscode.commands.registerCommand('gitbtn.openRepository', async function () {
@@ -23,7 +22,6 @@ module.exports = class TreeStatusBar {
         vscode.window.showErrorMessage('No file is opened in the editor!');
         return;
       }
-
       const getGitRepositoryUrl = async (filePath: string) => {
         try {
           const git = simpleGit(path.dirname(filePath));
@@ -48,12 +46,7 @@ module.exports = class TreeStatusBar {
      * Registering commands in the plugin context 
      * for automatic logout when the plugin is disabled
      */
-    context.subscriptions.push(initBtn);
     context.subscriptions.push(openRepository);
-
-    // 初始化插件
-    // init plugin
-    vscode.commands.executeCommand('gitbtn.initBtn');
 
   }
   unload(){

@@ -6,14 +6,17 @@ module.exports = class TreeConTainer {
   registe(context: any) {
     Base.tip('树视图注册')
     // 项目信息数据初始化
-    // let projectData = new ProjectDataProvider()
-    // vscode.window.registerTreeDataProvider(
-    //   'project', projectData
-    // );
-    // vscode.commands.registerCommand('autopub.refreshData', () => {
-    //   vscode.window.showInformationMessage("open dir:")
-    //   projectData.refresh()
-    // });
+    let projectData = new ProjectDataProvider()
+    vscode.window.registerTreeDataProvider(
+      'project', projectData
+    );
+    const refreshData = vscode.commands.registerCommand('autopub.refreshData', () => {
+      vscode.window.showInformationMessage("open dir:")
+      projectData.refresh()
+    });
+
+    context.subscriptions.push(projectData);
+    context.subscriptions.push(refreshData);
     
     // let dockerData = new ProjectDataProvider()
     // vscode.window.registerTreeDataProvider(

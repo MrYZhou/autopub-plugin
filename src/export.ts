@@ -2,7 +2,7 @@
 const path = require('path');
 
 let url = path.join(__dirname, 'command')
-let files = ['treeContainer', 'initEnv', 'gitJump', 'treeStatusBar']
+let files = ['gitJump', 'treeContainer', 'initEnv', 'treeStatusBar']
 
 let testFiles=['dependentest']
 files = [...files,...testFiles]
