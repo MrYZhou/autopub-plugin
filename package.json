@@ -94,6 +94,6 @@
     "mocha": "^10.2.0",
     "typescript": "^5.2.2",
     "@vscode/test-electron": "^2.3.6",
-    "simple-git": "^3.18.0"
+    "simple-git": "^3.21.0"
   }
 }
