@@ -41,7 +41,7 @@
         "title": "部署面板"
       },
       {
-        "command": "gitbtn.openRepository",
+        "command": "autopub.openRepository",
         "title": "打开仓库"
       }
     ],

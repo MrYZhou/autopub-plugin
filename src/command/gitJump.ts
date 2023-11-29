@@ -10,11 +10,11 @@ module.exports = class TreeStatusBar {
     myButton.tooltip = "Open RemoteRepository";
     myButton.text = `$(github)`
     myButton.color = 'white';
-    myButton.command = 'gitbtn.openRepository';
+    myButton.command = 'autopub.openRepository';
     myButton.show();
 
 
-    let openRepository = vscode.commands.registerCommand('gitbtn.openRepository', async function () {
+    let openRepository = vscode.commands.registerCommand('autopub.openRepository', async function () {
       const editor = vscode.window.activeTextEditor;
       const filePath = editor?.document.uri.fsPath;
 
