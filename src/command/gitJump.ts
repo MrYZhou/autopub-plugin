@@ -2,14 +2,7 @@ import * as vscode from 'vscode';
 import { Base } from "../base";
 import { simpleGit } from 'simple-git';
 import * as path from 'path';
-const getGitRepositoryUrl = (filePath: string) => {
-  return new Promise(async (res, rej) => {
-    const git = simpleGit(path.dirname(filePath));
-    const remotes = await git.getRemotes(true);
-    const gitRepoUrl = remotes.filter((remote: { name: string; }) => remote.name === 'origin')[0].refs.fetch;
-    res(gitRepoUrl);
-  })
-}
+
 module.exports = class TreeStatusBar {
   registe(context: any) {
     Base.tip('github仓库跳转')
@@ -20,7 +13,7 @@ module.exports = class TreeStatusBar {
     myButton.color = 'white';
     myButton.command = 'autopub.openRepository';
     myButton.show();
-
+    
     let openRepository = vscode.commands.registerCommand('autopub.openRepository', async () => {
       try {
         const editor = vscode.window.activeTextEditor;
@@ -29,6 +22,14 @@ module.exports = class TreeStatusBar {
         if (!filePath) {
           vscode.window.showErrorMessage('No file is opened in the editor!');
           return;
+        }
+        const getGitRepositoryUrl = (filePath: string) => {
+          return new Promise(async (res, rej) => {
+            const git = simpleGit(path.dirname(filePath));
+            const remotes = await git.getRemotes(true);
+            const gitRepoUrl = remotes.filter((remote: { name: string; }) => remote.name === 'origin')[0].refs.fetch;
+            res(gitRepoUrl);
+          })
         }
         const gitRepoUrl = await getGitRepositoryUrl(filePath) as string;
         const externalUri = await vscode.env.asExternalUri(vscode.Uri.parse(gitRepoUrl));
