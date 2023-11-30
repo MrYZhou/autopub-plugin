@@ -87,7 +87,17 @@ export class Base {
       resolve(1);
     });
   };
-  
+  static writeLog(data: string) {
+    this.writeFile(path.join(this.targetDir, 'autopub.log'), data)
+  }
+  static writeFile(path: string, data: string) {
+    fs.writeFile(path, data, {
+      encoding: "utf8",
+      flag: "a",
+    }, (err: any) => {
+      if (err) throw err;
+    });
+  }
   static readFile(path: string) {
     const data = fs.readFileSync(path, 'UTF-8').toString()
     return JSON.parse(data)
