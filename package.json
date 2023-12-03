@@ -83,7 +83,7 @@
     "test": "node ./out/test/runTest.js",
     "vscode:prepublish": "npm run esbuild-base -- --minify",
     "vscode:prepublish2": "node ./src/build.ts",
-    "esbuild-base": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" ./src/index.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild-base": "esbuild ./src/index.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./"
