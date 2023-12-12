@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { Base } from "../base";
 import { simpleGit } from 'simple-git';
 import * as path from 'path';
-
+const fs = require('fs')
 module.exports = class TreeStatusBar {
   registe(context: any) {
     Base.tip('github仓库跳转')
@@ -16,11 +16,11 @@ module.exports = class TreeStatusBar {
     
     let openRepository = vscode.commands.registerCommand('autopub.openRepository', async () => {
       try {
-        const editor = vscode.window.activeTextEditor;
-        const filePath = editor?.document.uri.fsPath;
-
-        if (!filePath) {
-          vscode.window.showErrorMessage('No file is opened in the editor!');
+        let uri = vscode.workspace.workspaceFolders?.[0].uri.fsPath as string
+        let filePath = path.join(uri, '.git/index')
+        let isExit = fs.existsSync(filePath);
+        if (!isExit) {
+          vscode.window.showErrorMessage('Not a git repository');
           return;
         }
         const getGitRepositoryUrl = (filePath: string) => {
