@@ -15,7 +15,18 @@ module.exports = class TreeConTainer {
       projectData.refresh()
     });
 
+    const editProject = vscode.commands.registerCommand('autopub.editProject', (item) => {
+      console.log(item);
+    });
+
+    const deleteProject = vscode.commands.registerCommand('autopub.deleteProject', (item) => {
+      console.log(item);
+    });
+
+
     context.subscriptions.push(refreshData);
+    context.subscriptions.push(editProject);
+    context.subscriptions.push(deleteProject);
     context.subscriptions.push(projectData);
     
 

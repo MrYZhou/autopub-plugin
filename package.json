@@ -51,6 +51,22 @@
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
         }
+      },
+      {
+        "command": "autopub.editProject",
+        "title": "AutoPub: 编辑项目",
+        "icon": {
+          "light": "resources/light/edit.svg",
+          "dark": "resources/dark/edit.svg"
+        }
+      },
+      {
+        "command": "autopub.deleteProject",
+        "title": "AutoPub: 删除项目",
+        "icon": {
+          "light": "resources/light/document.svg",
+          "dark": "resources/dark/document.svg"
+        }
       }
     ],
     "viewsContainers": {
@@ -82,8 +98,19 @@
           "when": "view == project",
           "group": "navigation"
         }
+      ],
+      "view/item/context": [
+        {
+          "command": "autopub.editProject",
+          "when": "view == project",
+          "group": "inline"
+        },
+        {
+          "command": "autopub.deleteProject",
+          "when": "view == project",
+          "group": "inline"
+        }
       ]
-      
     }
   },
   "scripts": {
