@@ -95,7 +95,7 @@ export class Base {
       encoding: "utf8",
       flag: "a",
     }, (err: any) => {
-      if (err) throw err;
+      if (err) {throw err;}
     });
   }
   static readFile(path: string) {
