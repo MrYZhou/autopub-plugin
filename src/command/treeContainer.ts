@@ -54,7 +54,25 @@ class ProjectDataProvider implements vscode.TreeDataProvider<any>{
   }
 }
 class DataModel {
-  label!: string;
+  /**
+   * 显示标题
+   */
+  label!: string
+  /**
+   * git仓库地址
+   */
+  gitUrl!: string
+  /**
+   * 类型标识。可选（folder,project）
+   * 
+   * folder 项目分类目录。如crm后台管理（工程）
+   * 
+   * project 具体项目。如crm java后端. crm web前端,crm h5端
+   */
+  type!: string
+  /**
+   * 子项目
+   */
   children!: DataModel[];
 }
 /**
@@ -64,14 +82,15 @@ class DateResult implements ProviderResult<any>{
   get() {
     let a = new DataModel();
     let b = new DataModel();
-    a.label = '1'
+    a.label = '测试项目'
+    a.type = 'folder'
 
-    b.label = '2'
+    b.label = 'web2'
     b.children = []
 
     a.children = [b]
     return [
-      a
+      a, b
     ]
   }
 }
