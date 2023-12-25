@@ -38,11 +38,19 @@
     "commands": [
       {
         "command": "autopub.showPubPanel",
-        "title": "部署面板"
+        "title": "AutoPub: 部署面板"
       },
       {
         "command": "autopub.openRepository",
         "title": "打开仓库"
+      },
+      {
+        "command": "autopub.refreshData",
+        "title": "AutoPub: 刷新面板",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
       }
     ],
     "viewsContainers": {
@@ -67,13 +75,16 @@
         }
       ]
     },
-    "view/title": [
-      {
-        "command": "autopub.refreshData",
-        "when": "view == project",
-        "group": "navigation"
-      }
-    ]
+    "menus": {
+      "view/title": [
+        {
+          "command": "autopub.refreshData",
+          "when": "view == project",
+          "group": "navigation"
+        }
+      ]
+      
+    }
   },
   "scripts": {
     "compile": "tsc -p ./",

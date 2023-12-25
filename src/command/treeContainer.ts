@@ -11,13 +11,14 @@ module.exports = class TreeConTainer {
       'project', projectData
     );
     const refreshData = vscode.commands.registerCommand('autopub.refreshData', () => {
-      vscode.window.showInformationMessage("open dir:")
+      vscode.window.showInformationMessage("refresh data...")
       projectData.refresh()
     });
 
-    context.subscriptions.push(projectData);
     context.subscriptions.push(refreshData);
+    context.subscriptions.push(projectData);
     
+
     // let dockerData = new ProjectDataProvider()
     // vscode.window.registerTreeDataProvider(
     //   'docker', dockerData

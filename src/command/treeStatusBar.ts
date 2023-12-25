@@ -7,14 +7,15 @@ module.exports = class TreeStatusBar {
     const myButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
     myButton.text = "$(star) AutoPub Panel";
     myButton.tooltip = "Click to show AutoPub Panel";
-    myButton.command = "myExtension.showPubPanel";
+    myButton.command = "autopub.showPubPanel";
     myButton.show();
-    const disposable = vscode.commands.registerCommand('myExtension.showPubPanel', () => {    
-      console.log('部署面板');
+    const disposable = vscode.commands.registerCommand('autopub.showPubPanel', () => {
+      console.log('部署控制台面板');
     });
-
-    // 将命令和按钮注册到上下文中，以便在插件被停用时进行清理
     context.subscriptions.push(myButton, disposable);
+
+
+
   }
   deactivate(){
     Base.tip('清理树视图2')
