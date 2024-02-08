@@ -1,6 +1,5 @@
 import { Base } from "./base";
-
-const path = require('path');
+import path from 'path'
 let url = path.join(__dirname, 'command')
 const files = Base.getAllFilesOfDir(url);
 

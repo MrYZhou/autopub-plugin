@@ -8,3 +8,4 @@ out
 env.ts
 pkg
 bin
+pnpm-lock.yaml
