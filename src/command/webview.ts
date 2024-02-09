@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Base } from "../base";
-import { WebviewPanel } from 'vscode';
+// import { WebviewPanel } from 'vscode';
 
 module.exports = class Webview {
   registe(context: any) {
@@ -14,24 +14,30 @@ module.exports = class Webview {
     webViewPanel.webview.postMessage({ message: 'Hello from the extension' });
 
     // 在 WebView 视图中加载 HTML 内容
-    webViewPanel.webview.html = `
-      <html>
-          <head>
-              <script>
-                  window.addEventListener('message', function (event) {
-                      console.log('Received message from the extension: ', event);
-                  });
-              </script>
-          </head>
-          <body>
-              <h1>Hello World!</h1>
-          </body>
-      </html>
-    `;
-
-
+    webViewPanel.webview.html = getWebviewHTML()
+    // webview销毁函数
+    webViewPanel.onDidDispose(() => {
+      console.log('webviewPanel onDidDispose')
+    })
 
   }
   deactivate() {
   }
+}
+
+function getWebviewHTML(): string {
+  return `
+ <html>
+     <head>
+         <script>
+             window.addEventListener('message', function (event) {
+                 console.log('Received message from the extension: ', event);
+             });
+         </script>
+     </head>
+     <body>
+         <h1>Hello World!</h1>
+     </body>
+ </html>
+`;
 }
