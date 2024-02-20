@@ -28,11 +28,15 @@
     "viewsWelcome": [
       {
         "view": "project",
-        "contents": "通过下面的按钮初始化一个项目\n[添加项目](command:nodeDependencies.addEntry)"
+        "contents": "通过下面的按钮初始化一个项目\n[添加](command:project.add)"
       },
       {
         "view": "docker",
-        "contents": "运行的容器\n[Add Dependency](command:nodeDependencies.addEntry)"
+        "contents": "主机运行的容器\n"
+      },
+      {
+        "view": "host",
+        "contents": "我的主机\n[添加](command:host.add)"
       }
     ],
     "commands": [
@@ -88,6 +92,10 @@
         {
           "id": "docker",
           "name": "容器"
+        },
+        {
+          "id": "host",
+          "name": "主机"
         }
       ]
     },
