@@ -9,7 +9,7 @@ module.exports = class Webview {
       vscode.ViewColumn.One,
       { enableScripts: true,
         localResourceRoots: [
-          vscode.Uri.file(path.join(context.extensionPath, 'dist')),
+          vscode.Uri.file(path.join(context.extensionPath, 'dist', 'app')),
         ],
       }
     );
@@ -42,6 +42,7 @@ function getWebviewHTML(extensionUri: vscode.Uri): string {
   const htmlPathOnDisk = vscode.Uri.joinPath(
     extensionUri,
     'dist',
+    'app',
     'index.html'
   );
   return fs.readFileSync(htmlPathOnDisk.fsPath, 'utf8');
