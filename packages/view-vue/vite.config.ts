@@ -14,6 +14,6 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../extension/out/view-vue'
+    outDir: '../extension/out/view'
   }
 })

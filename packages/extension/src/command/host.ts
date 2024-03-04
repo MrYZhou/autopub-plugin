@@ -10,7 +10,7 @@ module.exports = class Webview {
     vscode.ViewColumn.One,
     { enableScripts: true,
       localResourceRoots: [
-        vscode.Uri.file(path.join(context.extensionPath, 'out/view-vue')),
+        vscode.Uri.file(path.join(context.extensionPath, 'out/view')),
       ],
     }
   );
@@ -45,7 +45,7 @@ module.exports = class Webview {
 function getWebviewHTML(extensionUri: vscode.Uri): string {
   const htmlPathOnDisk = vscode.Uri.joinPath(
     extensionUri,
-    'out/view-vue',
+    'out/view',
     'index.html'
   );
   let res = fs.readFileSync(htmlPathOnDisk.fsPath, 'utf8');

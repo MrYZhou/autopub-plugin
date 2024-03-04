@@ -98,7 +98,7 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
-  packages/view-vue:
+  packages/view:
     dependencies:
       element-plus:
         specifier: ^2.6.0
