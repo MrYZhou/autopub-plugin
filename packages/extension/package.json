@@ -1,0 +1,162 @@
+{
+  "name": "autopub",
+  "displayName": "AutoPub",
+  "description": "quick autopub web or java application",
+  "version": "1.9.0",
+  "engines": {
+    "vscode": "^1.66.6"
+  },
+  "categories": [
+    "Other"
+  ],
+  "publisher": "larry",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "publish",
+    "ci/cd",
+    "tool"
+  ],
+  "icon": "rocket.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension/index.js",
+  "contributes": {
+    "viewsWelcome": [
+      {
+        "view": "project",
+        "contents": "通过下面的按钮初始化一个项目\n[添加](command:project.add)"
+      },
+      {
+        "view": "docker",
+        "contents": "主机运行的容器\n"
+      },
+      {
+        "view": "host",
+        "contents": "我的主机\n[添加](command:autopub.host.add)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "autopub.showPubPanel",
+        "title": "AutoPub: 部署面板"
+      },
+      {
+        "command": "autopub.openRepository",
+        "title": "打开仓库"
+      },
+      {
+        "command": "autopub.refreshData",
+        "title": "AutoPub: 刷新面板",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "autopub.editProject",
+        "title": "AutoPub: 编辑项目",
+        "icon": {
+          "light": "resources/light/edit.svg",
+          "dark": "resources/dark/edit.svg"
+        }
+      },
+      {
+        "command": "autopub.deleteProject",
+        "title": "AutoPub: 删除项目",
+        "icon": {
+          "light": "resources/light/document.svg",
+          "dark": "resources/dark/document.svg"
+        }
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pubview",
+          "title": "发布应用",
+          "icon": "$(rocket)"
+        }
+      ]
+    },
+    "views": {
+      "pubview": [
+        {
+          "id": "project",
+          "name": "项目",
+          "type": "tree"
+        },
+        {
+          "id": "docker",
+          "name": "容器"
+        },
+        {
+          "id": "host",
+          "name": "主机"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "autopub.refreshData",
+          "when": "view == project",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "autopub.editProject",
+          "when": "view == project",
+          "group": "inline"
+        },
+        {
+          "command": "autopub.deleteProject",
+          "when": "view == project",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run build-rollup",
+    "compile": "tsc -p ./",
+    "watch": "pnpm run clear:out && tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "clear": "rimraf ./out && rimraf ./node_modules",
+    "clear:out": "rimraf ./out/extension",
+    "build-rollup": "pnpm run clear:out && rollup -c",
+    "package": "pnpm vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "html-modifier": "^1.2.0",
+    "reflect-metadata": "^0.2.1",
+    "tsyringe": "^4.8.0",
+    "simple-git": "^3.21.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@vscode/vsce": "^2.22.0",
+    "rollup": "^4.9.5",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "tslib": "^2.6.2",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.66.6",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "@vscode/test-electron": "^2.3.6",
+    "esbuild": "^0.19.8",
+    "eslint": "^8.54.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  }
+}

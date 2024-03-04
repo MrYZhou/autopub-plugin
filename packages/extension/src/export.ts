@@ -1,12 +1,11 @@
 import { Base } from "./base";
-import path from 'path'
-let url = path.join(__dirname, 'command')
+let url = Base.join(__dirname, 'command')
 const files = Base.getAllFilesOfDir(url);
 
 let modules: any[] = []
 let actions: Promise<any>[] = []
 for (let index = 0; index < files.length; index++) {
-  actions.push(new Promise((res, rej) => {
+  actions.push(new Promise((res) => {
     let module = require(`${files[index]}`)
       res(modules[index] = new module())
   }))

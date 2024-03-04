@@ -1,153 +1,28 @@
 {
   "name": "autopub",
-  "displayName": "AutoPub",
-  "description": "quick autopub web or java application",
   "version": "1.9.0",
-  "engines": {
-    "vscode": "^1.66.6"
-  },
-  "categories": [
-    "Other"
-  ],
-  "publisher": "larry",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "keywords": [
-    "publish",
-    "ci/cd",
-    "tool"
-  ],
-  "icon": "rocket.png",
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "main": "./out/index.js",
-  "contributes": {
-    "viewsWelcome": [
-      {
-        "view": "project",
-        "contents": "通过下面的按钮初始化一个项目\n[添加](command:project.add)"
-      },
-      {
-        "view": "docker",
-        "contents": "主机运行的容器\n"
-      },
-      {
-        "view": "host",
-        "contents": "我的主机\n[添加](command:host.add)"
-      }
-    ],
-    "commands": [
-      {
-        "command": "autopub.showPubPanel",
-        "title": "AutoPub: 部署面板"
-      },
-      {
-        "command": "autopub.openRepository",
-        "title": "打开仓库"
-      },
-      {
-        "command": "autopub.refreshData",
-        "title": "AutoPub: 刷新面板",
-        "icon": {
-          "light": "resources/light/refresh.svg",
-          "dark": "resources/dark/refresh.svg"
-        }
-      },
-      {
-        "command": "autopub.editProject",
-        "title": "AutoPub: 编辑项目",
-        "icon": {
-          "light": "resources/light/edit.svg",
-          "dark": "resources/dark/edit.svg"
-        }
-      },
-      {
-        "command": "autopub.deleteProject",
-        "title": "AutoPub: 删除项目",
-        "icon": {
-          "light": "resources/light/document.svg",
-          "dark": "resources/dark/document.svg"
-        }
-      }
-    ],
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "pubview",
-          "title": "发布应用",
-          "icon": "$(rocket)"
-        }
-      ]
-    },
-    "views": {
-      "pubview": [
-        {
-          "id": "project",
-          "name": "项目",
-          "type": "tree"
-        },
-        {
-          "id": "docker",
-          "name": "容器"
-        },
-        {
-          "id": "host",
-          "name": "主机"
-        }
-      ]
-    },
-    "menus": {
-      "view/title": [
-        {
-          "command": "autopub.refreshData",
-          "when": "view == project",
-          "group": "navigation"
-        }
-      ],
-      "view/item/context": [
-        {
-          "command": "autopub.editProject",
-          "when": "view == project",
-          "group": "inline"
-        },
-        {
-          "command": "autopub.deleteProject",
-          "when": "view == project",
-          "group": "inline"
-        }
-      ]
-    }
-  },
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
-    "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "vscode:prepublish2": "node ./src/build.ts",
-    "esbuild-base": "esbuild ./src/index.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base -- --sourcemap",
-    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-    "test-compile": "tsc -p ./"
+    "dev": "run-p dev:view-*",
+    "dev:extension": "pnpm run -F extension watch",
+    "dev:view-vue": "pnpm run -F view-vue watch",
+    "dev:view-react": "pnpm run -F view-react watch",
+    "clear": "run-s clear:* && rm -rf ./node_modules",
+    "clear:extension": "pnpm run -F extension clear",
+    "clear:view": "pnpm run -F view-vue clear"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.4",
+    "cec-client-server": "^1.3.1",
+    "path-browserify": "^1.0.1"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.3",
-    "@types/node": "16.x",
-    "@types/vscode": "^1.66.6",
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "@vscode/test-electron": "^2.3.6",
-    "esbuild": "^0.19.8",
-    "eslint": "^8.54.0",
-    "glob": "^10.3.10",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "simple-git": "^3.21.0"
+    "@types/path-browserify": "^1.0.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.5"
   }
 }

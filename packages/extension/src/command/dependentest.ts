@@ -4,6 +4,7 @@ import * as path from 'path';
 import { Base } from "../base";
 module.exports = class TreeStatusBar {
   registe(context: any) {
+    Base.tip(context)
       vscode.window.createTreeView('docker', {
         treeDataProvider: new NodeDependenciesProvider("D://testnode")
       });

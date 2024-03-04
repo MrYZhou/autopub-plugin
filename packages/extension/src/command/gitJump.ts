@@ -24,7 +24,7 @@ module.exports = class TreeStatusBar {
           return;
         }
         const getGitRepositoryUrl = (filePath: string) => {
-          return new Promise(async (res, rej) => {
+          return new Promise(async (res) => {
             const git = simpleGit(path.dirname(filePath));
             const remotes = await git.getRemotes(true);
             const gitRepoUrl = remotes.filter((remote: { name: string; }) => remote.name === 'origin')[0].refs.fetch;
@@ -49,6 +49,6 @@ module.exports = class TreeStatusBar {
 
   }
   deactivate(context: any) {
-    Base.tip('注销git jump')
+    Base.tip('注销git jump'+context)
   }
 }

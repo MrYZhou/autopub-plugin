@@ -17,6 +17,10 @@ export class Base {
     }
     
   }
+  static join(...params: any[]){
+    let url = path.join(...params)
+    return url
+  }
   // 复制文件夹
   static copyFolder = (srcDir: string, tarDir: string, cb?: Function) => {
     let isExit = fs.existsSync(tarDir);
@@ -33,6 +37,9 @@ export class Base {
         let tarPath = path.join(tarDir, file);
 
         fs.stat(srcPath, (err: any, stats: { isDirectory: () => any }) => {
+          if (err) {
+            return;
+          }
           if (stats.isDirectory()) {
             fs.existsSync(tarPath)
               ? Base.copyFolder(srcPath, tarPath)
@@ -78,7 +85,7 @@ export class Base {
   // 初始化文件夹,某个文件路径中间文件夹不存在就生成,只用于文件
   // 也可以理解创建上一级的目录
   static mkdirs = (tarDir: string) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       let dir = path.resolve(tarDir, "../");
       if (tarDir && !fs.existsSync(dir)) {
         Base.mkdirs(dir);
