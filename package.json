@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "cd ./backend && go run .",
-    "dev": "run-p dev:view-*",
+    "dev": "run-p dev:view",
     "dev:extension": "pnpm run -F extension watch",
     "dev:view": "pnpm run -F view watch",
-    "dev:view-react": "pnpm run -F view-react watch",
     "clear": "run-s clear:* && rm -rf ./node_modules",
     "clear:extension": "pnpm run -F extension clear",
     "clear:view": "pnpm run -F view clear"
