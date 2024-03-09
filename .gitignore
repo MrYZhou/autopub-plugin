@@ -131,3 +131,6 @@ dist
 
 #IDE
 .idea
+*-lock.json
+pnpm-lock.yaml
+*.vsix
