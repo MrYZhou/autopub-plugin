@@ -2,6 +2,7 @@ package util
 
 import (
 	"log"
+	"os"
 
 	"github.com/acmestack/gorm-plus/gplus"
 	"github.com/bwmarrin/snowflake"
@@ -11,7 +12,15 @@ import (
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
 )
-
+func init() {
+	dbUrl:= os.Getenv("dbUrl")
+	if dbUrl == "" {
+		dbUrl = "root:root@tcp(127.0.0.1:3306)/study" 
+	}
+	DbInit("default",dbUrl)
+	DbChange("default")
+	
+}
 var node *snowflake.Node
 func getId() string{
 
