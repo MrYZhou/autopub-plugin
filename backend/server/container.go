@@ -6,3 +6,4 @@ type Container struct {
 	Name string `json:"name"` // 容器名
 	State string `json:"state"` // 运行状态
 }
+
