@@ -26,7 +26,7 @@ func pubweb(c *fiber.Ctx) error {
 	var model WebrUpload
 	// 从请求体中读取JSON内容并反序列化
 	if err := c.BodyParser(&model); err != nil {
-		return AppResult(c).Fail("Invalid JSON body")
+		return AppResult(c).Fail("请求体数据解析错误")
 	}
 	
 	if err := Pubweb(model); err != nil {
@@ -39,7 +39,7 @@ func pubjava(c *fiber.Ctx) error {
 	var model JarUpload
 	// 从请求体中读取JSON内容并反序列化
 	if err := c.BodyParser(&model); err != nil {
-		return AppResult(c).Fail("Invalid JSON body")
+		return AppResult(c).Fail("请求体数据解析错误")
 	}
 	
 	if err := Pubjava(model);err != nil {

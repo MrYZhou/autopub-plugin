@@ -94,7 +94,7 @@ func containerget(c *fiber.Ctx) error {
 func containeradd(c *fiber.Ctx) error {
 	var model Container
 	if err := c.BodyParser(&model); err != nil {
-		return AppResult(c).Fail("Invalid JSON body")
+		return AppResult(c).Fail("请求体数据解析错误")
 	}
 	gplus.Insert[Container](&model)
 

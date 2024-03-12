@@ -43,7 +43,7 @@ func projectget(c *fiber.Ctx) error {
 func projectadd(c *fiber.Ctx) error {
 	var model Project
 	if err := c.BodyParser(&model); err != nil {
-		return AppResult(c).Fail("Invalid JSON body")
+		return AppResult(c).Fail("请求体数据解析错误")
 	}
 	gplus.Insert[Project](&model)
   

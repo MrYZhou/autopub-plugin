@@ -7,6 +7,7 @@ import (
 	"github.com/acmestack/gorm-plus/gplus"
 	"github.com/gofiber/fiber/v2"
 )
+
 // 服务器资源保存
 func init(){
 	app := App()
@@ -42,7 +43,7 @@ func hostget(c *fiber.Ctx) error {
 func hostadd(c *fiber.Ctx) error {
 	var model Host
 	if err := c.BodyParser(&model); err != nil {
-		return AppResult(c).Fail("Invalid JSON body")
+		return AppResult(c).Fail("请求体数据解析错误")
 	}
 	gplus.Insert[Host](&model)
   
