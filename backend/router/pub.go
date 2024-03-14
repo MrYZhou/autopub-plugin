@@ -7,12 +7,12 @@ import (
 	. "autopub-server/util"
 )
 
-func init(){
+func init() {
 	app := App()
 
 	// 创建子路由
 	api := app.Group("/pub")
-	api.Get("/",pub)
+	api.Get("/", pub)
 
 	app.Post("pubweb", pubweb)
 
@@ -20,7 +20,7 @@ func init(){
 }
 func pub(c *fiber.Ctx) error {
 	return AppResult(c).Success()
-} 
+}
 
 func pubweb(c *fiber.Ctx) error {
 	var model WebrUpload
@@ -28,11 +28,11 @@ func pubweb(c *fiber.Ctx) error {
 	if err := c.BodyParser(&model); err != nil {
 		return AppResult(c).Fail("请求体数据解析错误")
 	}
-	
+
 	if err := Pubweb(model); err != nil {
 		return AppResult(c).Fail(err.Error())
 	}
-	return AppResult(c).Success(model,"部署web完成")
+	return AppResult(c).Success(model, "部署web完成")
 }
 
 func pubjava(c *fiber.Ctx) error {
@@ -41,10 +41,10 @@ func pubjava(c *fiber.Ctx) error {
 	if err := c.BodyParser(&model); err != nil {
 		return AppResult(c).Fail("请求体数据解析错误")
 	}
-	
-	if err := Pubjava(model);err != nil {
+
+	if err := Pubjava(model); err != nil {
 		return AppResult(c).Fail(err.Error())
 	}
-	return AppResult(c).Success(model,"部署java完成")
-	
+	return AppResult(c).Success(model, "部署java完成")
+
 }

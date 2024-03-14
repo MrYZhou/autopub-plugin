@@ -25,21 +25,22 @@ func init() {
 	api.Post("/export", containerexport)
 	api.Post("/import", containerimport)
 }
+
 // 创建一个Docker客户端实例
 func getCli() (*client.Client, error) {
-	
+
 	// docker20.x版本匹配的sdk是旧版的1.41
 	// opts := []client.Opt{
 	// 	client.WithVersion("1.41"),
 	// }
 	// cli, err := client.NewClientWithOpts(opts...)
-	
+
 	// 新版本连接写法
 	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {
 		log.Println("Error creating docker client:", err)
 	}
-	return cli,err
+	return cli, err
 }
 
 func containerlist(c *fiber.Ctx) error {
@@ -81,7 +82,7 @@ func containerrestart(c *fiber.Ctx) error {
 	// 容器id
 	id := c.Params("id")
 	cli, _ := getCli()
-	cli.ContainerRestart(context.Background(), id,	container.StopOptions{})
+	cli.ContainerRestart(context.Background(), id, container.StopOptions{})
 	return AppResult(c).Success()
 }
 
