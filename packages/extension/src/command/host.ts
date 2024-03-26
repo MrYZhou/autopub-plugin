@@ -1,5 +1,8 @@
 import * as vscode from 'vscode';
 import { Base } from "../base";
+// 用于修改 html 内容的库，基于：htmlparser2。下载：pnpm i -F extension html-modifier
+import { modifyHtml } from 'html-modifier' 
+
 const path = require('path');
 const fs = require('fs');
 module.exports = class Webview {
@@ -28,7 +31,7 @@ module.exports = class Webview {
       });
 
       // 在 WebView 视图中加载 HTML 内容
-      panel.webview.html = getWebviewHTML(context.extensionUri);
+      panel.webview.html = getWebviewHTML(panel, context.extensionUri);
 
       // webview销毁函数
       panel.onDidDispose(() => {
@@ -43,12 +46,7 @@ module.exports = class Webview {
   }
 }
 
-function getWebviewHTML(extensionUri: vscode.Uri): string {
-  const htmlPathOnDisk = vscode.Uri.joinPath(
-    extensionUri,
-    'out/view',
-    'index.html'
-  );
-  let res = fs.readFileSync(htmlPathOnDisk.fsPath, 'utf8');
-  return res
+async function getWebviewHTML(webviewView: vscode.WebviewView | vscode.WebviewPanel, extensionUri: vscode.Uri): string {
+
+
 }
