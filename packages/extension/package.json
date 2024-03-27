@@ -134,7 +134,6 @@
     "package": "pnpm vsce package --no-dependencies"
   },
   "dependencies": {
-    "html-modifier": "^1.2.0",
     "reflect-metadata": "^0.2.1",
     "tsyringe": "^4.8.0",
     "simple-git": "^3.21.0"

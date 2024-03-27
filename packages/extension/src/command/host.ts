@@ -1,12 +1,13 @@
 import * as vscode from 'vscode';
 import { Base } from "../base";
-// 用于修改 html 内容的库，基于：htmlparser2。下载：pnpm i -F extension html-modifier
-import { modifyHtml } from 'html-modifier' 
 
 const path = require('path');
 const fs = require('fs');
 module.exports = class Webview {
   registe(context: any) {
+    let extensionUri = vscode.extensions.getExtension('larry.autopub')?.extensionUri;
+    console.log(extensionUri, '地址');
+
     let openHostAdd = vscode.commands.registerCommand('autopub.host.add', async () => {
       // 创建一个新的 WebView 视图
       const panel = vscode.window.createWebviewPanel('myWebView', '添加主机',
@@ -46,7 +47,6 @@ module.exports = class Webview {
   }
 }
 
-async function getWebviewHTML(webviewView: vscode.WebviewView | vscode.WebviewPanel, extensionUri: vscode.Uri): string {
-
-
+function getWebviewHTML(webviewView: vscode.WebviewView | vscode.WebviewPanel, extensionUri: vscode.Uri): string {
+  return "128"
 }
