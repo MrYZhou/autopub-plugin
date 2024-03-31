@@ -2,8 +2,8 @@
 	"compilerOptions": {
     "module": "Node16",
     "target": "ES2022",
-    "outDir": "out/extension",
-    "lib": ["ES2022"],
+    "outDir": "out/extension", // 输出打包的目录。很关键
+    "lib": ["ES2022", "DOM"],
     "sourceMap": true,
     "rootDir": "src",
     "strict": true /* enable all strict type-checking options */
