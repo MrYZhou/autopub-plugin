@@ -1,10 +1,11 @@
 import * as vscode from 'vscode';
 import { Base } from "../base";
+import { Uri } from 'vscode';
 
 const path = require('path');
 const fs = require('fs');
 module.exports = class Webview {
-  registe(context: any) {
+  registe(context: vscode.ExtensionContext) {
     let extensionUri = vscode.extensions.getExtension('larry.autopub')?.extensionUri;
     console.log(extensionUri, '地址');
 
@@ -32,7 +33,7 @@ module.exports = class Webview {
       });
 
       // 在 WebView 视图中加载 HTML 内容
-      panel.webview.html = getWebviewHTML(panel.webview, context.extensionUri);
+      panel.webview.html = getWebviewHTML(panel, extensionUri ?? Uri.file(''));
 
       // webview销毁函数
       panel.onDidDispose(() => {
@@ -47,16 +48,28 @@ module.exports = class Webview {
   }
 }
 
-function getWebviewHTML(webview: vscode.Webview, extensionUri: vscode.Uri): string {
+function getWebviewHTML(panel: vscode.WebviewPanel, extensionUri: Uri): string {
   // TODO 获取随机文件名
   // js地址动态转换
-  const scriptUri = webview.asWebviewUri(
-    vscode.Uri.joinPath(extensionUri, "media", "main.js")
+  const scriptUri1 = panel.webview.asWebviewUri(
+    vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets', 'index-70d3a69b.js')
   );
 
   // css地址动态转换
-  const styleResetUri = webview.asWebviewUri(
-    vscode.Uri.joinPath(extensionUri, "media", "reset.css")
+  const styleResetUri2 = panel.webview.asWebviewUri(
+    vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets', 'index-70d3a69b.css')
   );
-  return "128"
+
+  // const styleUri = panel.webview.asWebviewUri(vscode.Uri.file(
+  //   path.join(context.extensionPath, 'out', 'view', 'assets', 'index-70d3a69b.css')
+  // ));
+  // const scriptUri = panel.webview.asWebviewUri(vscode.Uri.file(
+  //   path.join(context.extensionPath, 'out', 'view', 'assets', 'index-d36c2de6.js')
+  // ));
+  // const entryHtmlPath = vscode.Uri.file(
+  //   path.join(context.extensionPath, 'out', 'view', 'index.html')
+  // );
+
+
+  return ``;
 }
