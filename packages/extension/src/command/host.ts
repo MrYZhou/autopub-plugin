@@ -51,25 +51,30 @@ module.exports = class Webview {
 function getWebviewHTML(panel: vscode.WebviewPanel, extensionUri: Uri): string {
   // TODO 获取随机文件名
   // js地址动态转换
-  const scriptUri1 = panel.webview.asWebviewUri(
-    vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets', 'index-70d3a69b.js')
+  const scriptUri = panel.webview.asWebviewUri(
+    vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets', 'index-d36c2de6.js')
   );
 
   // css地址动态转换
-  const styleResetUri2 = panel.webview.asWebviewUri(
+  const styleUri = panel.webview.asWebviewUri(
     vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets', 'index-70d3a69b.css')
   );
 
-  // const styleUri = panel.webview.asWebviewUri(vscode.Uri.file(
-  //   path.join(context.extensionPath, 'out', 'view', 'assets', 'index-70d3a69b.css')
-  // ));
-  // const scriptUri = panel.webview.asWebviewUri(vscode.Uri.file(
-  //   path.join(context.extensionPath, 'out', 'view', 'assets', 'index-d36c2de6.js')
-  // ));
-  // const entryHtmlPath = vscode.Uri.file(
-  //   path.join(context.extensionPath, 'out', 'view', 'index.html')
-  // );
 
-
-  return ``;
+  return `<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <base target="_top" href="/"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- don't remove !! __webview_public_path__ -->
+      <script type="module" crossorigin src="${scriptUri}"></script>
+      <link rel="stylesheet" href="${styleUri}">
+    </head>
+    <body>
+      <div id="app"></div>
+      
+    </body>
+  </html>
+  `;
 }
