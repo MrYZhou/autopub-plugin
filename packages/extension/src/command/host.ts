@@ -32,7 +32,7 @@ module.exports = class Webview {
       });
 
       // 在 WebView 视图中加载 HTML 内容
-      panel.webview.html = getWebviewHTML(panel, context.extensionUri);
+      panel.webview.html = getWebviewHTML(panel.webview, context.extensionUri);
 
       // webview销毁函数
       panel.onDidDispose(() => {
@@ -47,6 +47,16 @@ module.exports = class Webview {
   }
 }
 
-function getWebviewHTML(webviewView: vscode.WebviewView | vscode.WebviewPanel, extensionUri: vscode.Uri): string {
+function getWebviewHTML(webview: vscode.Webview, extensionUri: vscode.Uri): string {
+  // TODO 获取随机文件名
+  // js地址动态转换
+  const scriptUri = webview.asWebviewUri(
+    vscode.Uri.joinPath(extensionUri, "media", "main.js")
+  );
+
+  // css地址动态转换
+  const styleResetUri = webview.asWebviewUri(
+    vscode.Uri.joinPath(extensionUri, "media", "reset.css")
+  );
   return "128"
 }
