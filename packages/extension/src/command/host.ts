@@ -33,7 +33,7 @@ module.exports = class Webview {
       });
 
       // 在 WebView 视图中加载 HTML 内容
-      panel.webview.html = getWebviewHTML(panel, extensionUri ?? Uri.file(''));
+      panel.webview.html = await  getWebviewHTML(panel, extensionUri ?? Uri.file(''));
 
       // webview销毁函数
       panel.onDidDispose(() => {
@@ -47,19 +47,35 @@ module.exports = class Webview {
   deactivate() {
   }
 }
+// 获取目录下文件信息
+async function listFilesInDirectory(uri: vscode.Uri): Promise<any> {
+  try {
+      // 使用vscode.workspace.fs.readDirectory来获取目录内容
+      const entries = await vscode.workspace.fs.readDirectory(uri) as any;
 
-function getWebviewHTML(panel: vscode.WebviewPanel, extensionUri: Uri): string {
-  // TODO 获取随机文件名
+      let map = {} as any
+      entries.map((entry: string[]) => {
+            if(entry[0].includes('css')){
+              map['css'] = vscode.Uri.joinPath(uri, entry[0])
+            }
+            if(entry[0].includes('js')){
+              map['js'] = vscode.Uri.joinPath(uri, entry[0])
+            }
+          }); 
+      
+      return map;
+  } catch (error) {
+      console.error(`Failed to read directory: ${error}`);
+      return [];
+  }
+}
+
+async function getWebviewHTML(panel: vscode.WebviewPanel, extensionUri: Uri): Promise<string> {
+  let res = await listFilesInDirectory(vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets'))
   // js地址动态转换
-  const scriptUri = panel.webview.asWebviewUri(
-    vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets', 'index-d36c2de6.js')
-  );
-
+  const scriptUri = panel.webview.asWebviewUri(res['js']);
   // css地址动态转换
-  const styleUri = panel.webview.asWebviewUri(
-    vscode.Uri.joinPath(extensionUri, 'out', 'view', 'assets', 'index-70d3a69b.css')
-  );
-
+  const styleUri = panel.webview.asWebviewUri(res['css']);
 
   return `<!DOCTYPE html>
   <html lang="en">
