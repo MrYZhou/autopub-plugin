@@ -7,7 +7,6 @@ const fs = require('fs');
 module.exports = class Webview {
   registe(context: vscode.ExtensionContext) {
     let extensionUri = vscode.extensions.getExtension('larry.autopub')?.extensionUri;
-    console.log(extensionUri, '地址');
 
     let openHostAdd = vscode.commands.registerCommand('autopub.host.add', async () => {
       // 创建一个新的 WebView 视图
