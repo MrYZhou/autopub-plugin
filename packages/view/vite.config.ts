@@ -14,6 +14,8 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../extension/out/view'
+      outDir: '../extension/out/view',
+      emptyOutDir: true,
+      chunkSizeWarningLimit:1000
   }
 })

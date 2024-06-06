@@ -11,13 +11,13 @@ let  eventData = reactive({message:''})
 const confirm = () => {
   // 请求后端接口
   console.log(aa.value)
-  vscode.postMessage({ type: 'hostAdd',data:'hostAdd' });
+  vscode.postMessage({ type: 'hostAdd',data:'hostAdd12' });
 }
 //监听插件消息
 window.addEventListener('message', event => {
     // 确保消息来源是可信的，通常是检查event.origin
     // vscode.postMessage({ message: 'hostAdd',data:event });
-    console.log(JSON.parse(event.data));
+    console.log(event.data);
     
     // if (event.origin !== 'yourExtensionOrigin') return;
     // alert(event)
@@ -34,7 +34,7 @@ window.addEventListener('message', event => {
   <div>
     <el-input v-model="aa" placeholder="主机名"></el-input>
     {{ eventData }} {{ eventData.message }}
-    <el-button @click="confirm">确定</el-button>
+    <el-button @click="confirm">确定1</el-button>
   </div>
 </template>
 

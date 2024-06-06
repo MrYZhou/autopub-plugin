@@ -39,6 +39,8 @@ module.exports = class Webview {
                 console.log('panel onDidDispose')
             })
 
+            panel.webview.postMessage({ type: 'hostAdd1', data: 'hostAdd' });
+
 
         })
         context.subscriptions.push(openHostAdd);
