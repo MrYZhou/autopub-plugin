@@ -1,41 +1,54 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref, toRaw } from 'vue';
 
-const aa = ref("")
-declare let  acquireVsCodeApi: any;
+const form = reactive({
+    hostName: '',
+    host: '',
+    account: '',
+    password: '',
+})
+declare let acquireVsCodeApi: any;
 interface ResultData {
-    message:String
+    message: String
 }
 const vscode = acquireVsCodeApi()
-let  eventData = reactive({message:''})
+let eventData = reactive({ data: '', type: '' })
 const confirm = () => {
-  // 请求后端接口
-  console.log(aa.value)
-  vscode.postMessage({ type: 'hostAdd',data:'hostAdd12' });
+    vscode.postMessage({ type: 'hostAdd', data: toRaw(form) });
 }
 //监听插件消息
 window.addEventListener('message', event => {
     // 确保消息来源是可信的，通常是检查event.origin
-    // vscode.postMessage({ message: 'hostAdd',data:event });
-    console.log(event.data);
-    
-    // if (event.origin !== 'yourExtensionOrigin') return;
-    // alert(event)
-    // const message = event.data;
-    // console.log('Received message:', message);
-
-    // if (message.command === 'yourCommand') {
-    //     console.log(11);
-    // }
+    eventData.data = event.data.data
+    eventData.type = event.data.type
 });
 </script>
-
 <template>
-  <div>
-    <el-input v-model="aa" placeholder="主机名"></el-input>
-    {{ eventData }} {{ eventData.message }}
-    <el-button @click="confirm">确定1</el-button>
-  </div>
+  <el-row>
+    <el-form :model="form" label-width="auto" :label-position="'right'">
+      <el-form-item label="主机名">
+        <el-input v-model="form.hostName" />
+      </el-form-item>
+      <el-form-item label="主机地址">
+        <el-input v-model="form.host" />
+      </el-form-item>
+      <el-form-item label="账号">
+        <el-input v-model="form.account" />
+      </el-form-item>
+      <el-form-item label="密码">
+        <el-input v-model="form.password" />
+      </el-form-item>
+      <el-form-item 
+        ><el-row class="confirm-wrap">
+          <el-button class='confirm-btn' type="primary" @click="confirm" style="width: 100%;">确定</el-button>
+        </el-row></el-form-item
+      >
+    </el-form>
+  </el-row>
 </template>
-
-<style scoped></style>
+<style scoped>
+.confirm-wrap{
+    width: 110px;
+    margin-left: 108px;
+}
+</style>
