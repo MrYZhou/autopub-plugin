@@ -1,12 +1,12 @@
-// Place your settings in this file to overwrite default and user settings.
+// 将您的设置放在此文件中以覆盖默认设置和用户设置。
 {
   "files.exclude": {
-    "out": false // set this to true to hide the "out" folder with the compiled JS files
+    "out": false // 将此设置为 true 以隐藏包含已编译 JS 文件的“out”文件夹
   },
   "search.exclude": {
-    "out": true // set this to false to include "out" folder in search results
+    "out": true // 将此设置为 true 以在搜索结果中不包含“out”文件夹
   },
-  // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
+  // 关闭 tsc 任务自动检测，因为我们将必要的任务作为 npm 脚本
   "typescript.tsc.autoDetect": "off",
   "workbench.colorTheme": "Default Dark Modern"
 }

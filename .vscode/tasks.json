@@ -13,8 +13,9 @@
 			},
 			"group": {
 				"kind": "build",
-				"isDefault": true
+				"isDefault": true // 设置为默认脚本,${defaultBuildTask}会使用
 			}
+
 		}
 	]
 }
