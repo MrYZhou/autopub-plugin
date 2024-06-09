@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import { Base } from "../base";
+import { Base } from "../util/tool";
 import { Uri } from 'vscode';
-
+import axios from 'axios';
 const path = require('path');
 const fs = require('fs');
 module.exports = class Webview {
@@ -21,12 +21,15 @@ module.exports = class Webview {
             );
 
             // 注册消息监听器来接收来自webview的消息
-            panel.webview.onDidReceiveMessage(event => {
+            panel.webview.onDidReceiveMessage(async event => {
 
                 // 处理来自表单的数据
                 if (event.type === 'hostAdd') {
 
                     console.log('Received form data:', event.data);
+                    const response = await axios.get('http://127.0.0.1:8083');
+                    console.log(response);
+
                     // 这里实现将数据存储到数据库或其他操作
                 }
             });

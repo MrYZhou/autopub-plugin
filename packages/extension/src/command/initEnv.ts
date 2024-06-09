@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Base } from "../base";
+import { Base } from "../util/tool";
 import { log } from 'console';
 module.exports = class TreeStatusBar {
   registe(context: any) {

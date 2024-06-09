@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Base } from "../base";
+import { Base } from "../util/tool";
 import { simpleGit } from 'simple-git';
 import * as path from 'path';
 const fs = require('fs')

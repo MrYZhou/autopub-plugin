@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { Base } from "../base";
+import { Base } from "../util/tool";
 module.exports = class TreeStatusBar {
   registe(context: any) {
     Base.tip(context)

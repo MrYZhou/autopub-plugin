@@ -38,5 +38,5 @@ async function runBuild() {
   console.log(result);
 }
 
-
-runBuild();
+// esbuild打包废弃
+// runBuild();
