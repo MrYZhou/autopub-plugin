@@ -1,6 +1,3 @@
-
-const config = require('./config')
-
 const path = require('path')
 const os = require('os')
 const fs = require('fs')
@@ -123,21 +120,15 @@ export class Base {
         return files;
     }
     static time(label: string) {
-        if (config.test) {
-            console.time(label)
-        }
+        console.time(label)
     }
 
     static timeEnd(label: string) {
-        if (config.test) {
-            console.timeEnd(label)
-        }
+        console.timeEnd(label)
     }
 
     static tip(msg: any) {
-        if (config.test) {
-            console.log(msg);
-        }
+        console.log(msg);
     }
     static jsonToBinary(jsonObj: any) {
         // 将JSON对象序列化为字符串
