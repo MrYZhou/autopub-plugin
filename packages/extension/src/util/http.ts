@@ -105,7 +105,7 @@ class RequestHttp {
     }
 
     // 常用方法封装
-    static get<T>(url: string, params?: object): Promise<ResultData<T>> {
+    get<T>(url: string, params?: object): Promise<ResultData<T>> {
         return RequestHttp.service.get(url, { params });
     }
     post<T>(url: string, params?: object): Promise<ResultData<T>> {
@@ -118,6 +118,6 @@ class RequestHttp {
         return RequestHttp.service.delete(url, { params });
     }
 }
-
+;
 // 导出一个实例对象
-export default RequestHttp;
+export default RequestHttp

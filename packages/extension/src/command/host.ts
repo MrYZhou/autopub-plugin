@@ -1,13 +1,12 @@
 import * as vscode from 'vscode';
-import { Base } from "../util/tool";
+import { Base, get } from "../util/tool";
 import { Uri } from 'vscode';
 import axios from 'axios';
-import Http from '../util/http'
-const http = Http.getInstance()
+
 const path = require('path');
 const fs = require('fs');
 module.exports = class Webview {
-    registe(context: vscode.ExtensionContext) {
+    async registe(context: vscode.ExtensionContext) {
         let extensionUri = vscode.extensions.getExtension('larry.autopub')?.extensionUri;
         let panel: vscode.WebviewPanel
         let openHostAdd = vscode.commands.registerCommand('autopub.host.add', async () => {
@@ -29,10 +28,6 @@ module.exports = class Webview {
                 if (event.type === 'hostAdd') {
 
                     console.log('Received form data:', event.data);
-                    // const response = await axios.get('http://127.0.0.1:8083');
-                    const response = await http.get('');
-                    console.log(response);
-
                     // 这里实现将数据存储到数据库或其他操作
                 }
             });
@@ -46,9 +41,8 @@ module.exports = class Webview {
             })
 
             panel.webview.postMessage({ type: 'hostAdd1', data: 'hostAdd' });
-
-
         })
+        const response = await get('/');
         context.subscriptions.push(openHostAdd);
 
 

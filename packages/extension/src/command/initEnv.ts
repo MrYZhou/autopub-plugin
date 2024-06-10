@@ -1,8 +1,7 @@
 import * as vscode from 'vscode';
 import { Base } from "../util/tool";
-import { log } from 'console';
 module.exports = class TreeStatusBar {
-  registe(context: any) {
+    async registe(context: any) {
     Base.tip('环境初始化'+context)
     
     Base.init()

@@ -1,6 +1,8 @@
 const path = require('path')
 const os = require('os')
 const fs = require('fs')
+import axios from 'axios'
+const baseUrl: string = 'http://127.0.0.1:8083'
 
 export class Base {
 
@@ -156,3 +158,13 @@ export class Base {
     }
 
 }
+export const get = async (url: string) => {
+    try {
+        let response = await axios.get(baseUrl + url)
+        return response.data
+    } catch (error) {
+        console.log(error);
+
+    }
+
+};
