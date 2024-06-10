@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
-import { Base, get } from "../util/tool";
+import { Base, get, post } from "../util/tool";
 import { Uri } from 'vscode';
-import axios from 'axios';
 
 const path = require('path');
 const fs = require('fs');
@@ -29,6 +28,10 @@ module.exports = class Webview {
 
                     console.log('Received form data:', event.data);
                     // 这里实现将数据存储到数据库或其他操作
+                    await post('/host/add', event.data).then(res => {
+                        console.log(res);
+                        
+                    })
                 }
             });
 
@@ -40,9 +43,8 @@ module.exports = class Webview {
                 console.log('panel onDidDispose')
             })
 
-            panel.webview.postMessage({ type: 'hostAdd1', data: 'hostAdd' });
+            panel.webview.postMessage({ type: 'router', url: '/index' });
         })
-        const response = await get('/');
         context.subscriptions.push(openHostAdd);
 
 

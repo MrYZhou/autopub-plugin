@@ -164,7 +164,16 @@ export const get = async (url: string) => {
         return response.data
     } catch (error) {
         console.log(error);
+    }
 
+};
+
+export const post = async (url: string, data: any) => {
+    try {
+        let response = await axios.post(baseUrl + url, data)
+        return response.data
+    } catch (error) {
+        console.log(error);
     }
 
 };

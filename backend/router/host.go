@@ -45,6 +45,7 @@ func hostadd(c *fiber.Ctx) error {
 	if err := c.BodyParser(&model); err != nil {
 		return AppResult(c).Fail("请求体数据解析错误")
 	}
+	model.Id = GetId()
 	gplus.Insert[Host](&model)
 
 	return AppResult(c).Success("添加成功")
