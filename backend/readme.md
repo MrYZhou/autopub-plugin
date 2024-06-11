@@ -4,6 +4,10 @@ router 写路由,前置校验，少部分简单的业务逻辑<br />server 写�
 
 ## 项目环境
 ### 安装依赖
+代理
+```
+go env -w GOPROXY=https://goproxy.cn,direct
+```
 ```
 go get 或 go install
 ```
