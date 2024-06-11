@@ -88,7 +88,6 @@ async function getWebviewHTML(panel: vscode.WebviewPanel, extensionUri: Uri): Pr
       <meta charset="UTF-8">
       <base target="_top" href="/"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- don't remove !! __webview_public_path__ -->
       <script type="module" crossorigin src="${scriptUri}"></script>
       <link rel="stylesheet" href="${styleUri}">
     </head>
