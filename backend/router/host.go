@@ -3,6 +3,7 @@ package router
 import (
 	. "autopub-server/server"
 	. "autopub-server/util"
+	"net/url"
 
 	"github.com/acmestack/gorm-plus/gplus"
 	"github.com/gofiber/fiber/v2"
@@ -42,9 +43,18 @@ func hostget(c *fiber.Ctx) error {
 }
 func hostadd(c *fiber.Ctx) error {
 	var model Host
+
 	if err := c.BodyParser(&model); err != nil {
 		return AppResult(c).Fail("请求体数据解析错误")
 	}
+	hostValues := url.Values{}
+	hostValues.Set("host", model.Host)
+	host, _ := gplus.SelectList[Host](
+		gplus.BuildQuery[Host](hostValues))
+	if len(host) > 0 {
+		return AppResult(c).Fail("已经存在该主机")
+	}
+	model.Id = GetId()
 	gplus.Insert[Host](&model)
 
 	return AppResult(c).Success("添加成功")

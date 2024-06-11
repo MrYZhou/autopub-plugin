@@ -1,4 +1,4 @@
-import { Base } from "./base";
+import { Base } from "./util/tool";
 let url = Base.join(__dirname, 'command')
 const files = Base.getAllFilesOfDir(url);
 

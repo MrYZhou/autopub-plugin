@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
-import { Base } from "../base";
+import { Base, get, post } from "../util/tool";
 import { Uri } from 'vscode';
 
 const path = require('path');
 const fs = require('fs');
 module.exports = class Webview {
-    registe(context: vscode.ExtensionContext) {
+    async registe(context: vscode.ExtensionContext) {
         let extensionUri = vscode.extensions.getExtension('larry.autopub')?.extensionUri;
         let panel: vscode.WebviewPanel
         let openHostAdd = vscode.commands.registerCommand('autopub.host.add', async () => {
@@ -21,13 +21,17 @@ module.exports = class Webview {
             );
 
             // 注册消息监听器来接收来自webview的消息
-            panel.webview.onDidReceiveMessage(event => {
+            panel.webview.onDidReceiveMessage(async event => {
 
                 // 处理来自表单的数据
                 if (event.type === 'hostAdd') {
 
                     console.log('Received form data:', event.data);
                     // 这里实现将数据存储到数据库或其他操作
+                    await post('/host/add', event.data).then(res => {
+                        console.log(res);
+                        
+                    })
                 }
             });
 
@@ -39,9 +43,7 @@ module.exports = class Webview {
                 console.log('panel onDidDispose')
             })
 
-            panel.webview.postMessage({ type: 'hostAdd1', data: 'hostAdd' });
-
-
+            panel.webview.postMessage({ type: 'router', url: '/index' });
         })
         context.subscriptions.push(openHostAdd);
 

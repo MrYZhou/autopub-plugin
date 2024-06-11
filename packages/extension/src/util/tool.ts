@@ -1,9 +1,8 @@
-
-const config = require('./config')
-
 const path = require('path')
 const os = require('os')
 const fs = require('fs')
+import axios from 'axios'
+const baseUrl: string = 'http://127.0.0.1:8083'
 
 export class Base {
 
@@ -123,21 +122,15 @@ export class Base {
         return files;
     }
     static time(label: string) {
-        if (config.test) {
-            console.time(label)
-        }
+        console.time(label)
     }
 
     static timeEnd(label: string) {
-        if (config.test) {
-            console.timeEnd(label)
-        }
+        console.timeEnd(label)
     }
 
     static tip(msg: any) {
-        if (config.test) {
-            console.log(msg);
-        }
+        console.log(msg);
     }
     static jsonToBinary(jsonObj: any) {
         // 将JSON对象序列化为字符串
@@ -165,3 +158,22 @@ export class Base {
     }
 
 }
+export const get = async (url: string) => {
+    try {
+        let response = await axios.get(baseUrl + url)
+        return response.data
+    } catch (error) {
+        console.log(error);
+    }
+
+};
+
+export const post = async (url: string, data: any) => {
+    try {
+        let response = await axios.post(baseUrl + url, data)
+        return response.data
+    } catch (error) {
+        console.log(error);
+    }
+
+};

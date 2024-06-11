@@ -13,6 +13,8 @@ import (
 	"gorm.io/gorm/schema"
 )
 
+var node *snowflake.Node
+
 func init() {
 	dbUrl := os.Getenv("dbUrl")
 	if dbUrl == "" {
@@ -21,24 +23,31 @@ func init() {
 	DbInit("default", dbUrl)
 	DbChange("default")
 
+	node, _ = snowflake.NewNode(1)
 }
 
-var node *snowflake.Node
-
-func getId() string {
-
-	node, _ = snowflake.NewNode(1)
+func GetId() string {
 	return node.Generate().String()
 }
 
 var gormDb *gorm.DB
 var gormDbMap = make(map[string]*gorm.DB)
 
+/*
+从gormDbMap中切换数据库
+
+tag 库名key
+*/
 func DbChange(tag string) {
 	// gplus的连接的数据库
 	gormDb := gormDbMap[tag]
 	gplus.Init(gormDb)
 }
+/*
+初始化库存在gormDbMap中
+
+tag 库名key ,url数据库地址
+*/
 func DbInit(tag string, url string) {
 	var err error
 	gormDb, err = gorm.Open(mysql.Open(url+"?charset=utf8mb4&parseTime=True&loc=Local"), &gorm.Config{
