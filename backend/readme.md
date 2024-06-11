@@ -10,8 +10,12 @@ go get 或 go install
 ### 启动
 方式一：下载air([https://github.com/cosmtrek/air)](https://github.com/cosmtrek/air))，热部署启动<br />
 
-go install github.com/cosmtrek/air@latest <br />
-air<br /><br />
+在外面cmd窗口执行
+go install github.com/air-verse/air@latest
+<br />
+
+项目执行 air init <br />
+项目启动 air<br /><br />
 
 方式二：<br /><br />go run .
 
