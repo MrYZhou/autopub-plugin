@@ -134,5 +134,5 @@ dist
 *-lock.json
 pnpm-lock.yaml
 *.vsix
-
+*.zip
 packages/view/pkg/*
