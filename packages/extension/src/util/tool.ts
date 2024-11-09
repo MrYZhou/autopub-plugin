@@ -132,30 +132,7 @@ export class Base {
     static tip(msg: any) {
         console.log(msg);
     }
-    static jsonToBinary(jsonObj: any) {
-        // 将JSON对象序列化为字符串
-        const jsonString = JSON.stringify(jsonObj);
-
-        // 创建TextEncoder实例用于将字符串转换为UTF-8编码的Uint8Array
-        const encoder = new TextEncoder();
-
-        // 将字符串转换为Uint8Array
-        const binaryData = encoder.encode(jsonString);
-
-        return binaryData;
-    }
-    static binaryToJson(binaryData: AllowSharedBufferSource | undefined) {
-        // 创建TextDecoder实例用于将Uint8Array解码为字符串
-        const decoder = new TextDecoder('utf-8');
-
-        // 将二进制数据转换回字符串
-        const jsonString = decoder.decode(binaryData);
-
-        // 将字符串解析为JSON对象
-        const jsonObj = JSON.parse(jsonString);
-
-        return jsonObj;
-    }
+    
 
 }
 export const get = async (url: string) => {

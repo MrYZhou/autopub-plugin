@@ -128,16 +128,14 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "clear": "rimraf ./out && rimraf ./node_modules",
-    "clear:out": "rimraf ./out/extension",
+    "clear": "pnpm rimraf ./out",
+    "clear:node": "pnpm rimraf ./node_modulesn",
     "build-rollup": "pnpm run clear:out && rollup -c",
     "package": "pnpm vsce package --no-dependencies"
   },
   "dependencies": {
     "axios": "^1.7.2",
-    "reflect-metadata": "^0.2.1",
-    "simple-git": "^3.21.0",
-    "tsyringe": "^4.8.0"
+    "simple-git": "^3.21.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",

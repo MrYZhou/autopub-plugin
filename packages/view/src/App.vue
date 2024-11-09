@@ -16,15 +16,16 @@ const confirm = () => {
     vscode.postMessage({ type: 'hostAdd', data: toRaw(form) });
 }
 //监听插件消息
-window.addEventListener('message', event => {
+    window.addEventListener('message', ({data}) => {
     // 确保消息来源是可信的，通常是检查event.origin
-    eventData.data = event.data.data
-    eventData.type = event.data.type
-});
+    console.log(data,222);
+    eventData.type = data.port
+    });
 </script>
 <template>
   <el-row>
     <el-form :model="form" label-width="auto" :label-position="'right'">
+      {{ eventData.type }}222
       <el-form-item label="主机名">
         <el-input v-model="form.name" />
       </el-form-item>
@@ -43,9 +44,15 @@ window.addEventListener('message', event => {
       <el-form-item label="密钥">
         <el-input v-model="form.secretValue" />
       </el-form-item>
-      <el-form-item 
+      <el-form-item
         ><el-row class="confirm-wrap">
-          <el-button class='confirm-btn' type="primary" @click="confirm" style="width: 100%;">确定</el-button>
+          <el-button
+            class="confirm-btn"
+            type="primary"
+            @click="confirm"
+            style="width: 100%;"
+            >确定</el-button
+          >
         </el-row></el-form-item
       >
     </el-form>

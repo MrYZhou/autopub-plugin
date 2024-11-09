@@ -28,10 +28,10 @@ module.exports = class Webview {
 
                     console.log('Received form data:', event.data);
                     // 这里实现将数据存储到数据库或其他操作
-                    await post('/host/add', event.data).then(res => {
-                        console.log(res);
-                        
-                    })
+                    // await post('/host/add', event.data).then(res => {
+                    //     console.log(res);
+                    // })
+                    panel.webview.postMessage(event.data);
                 }
             });
 
