@@ -7,6 +7,7 @@
     "server": "cd ./backend && go run .",
     "dev": " run-p dev:extension dev:view",
     "build":"cd packages/extension && pnpm package",
+    "ei":"cd packages/extension && pnpm i ",
     "dev:extension": "cd packages/extension && pnpm watch",
     "dev:view": "pnpm run -F view watch",
     "clear": "run-s clear:*",

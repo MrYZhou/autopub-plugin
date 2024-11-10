@@ -11,6 +11,6 @@
     "experimentalDecorators": true /* Add a polyfill for the Reflect API (examples below use reflect-metadata)  */,
     "emitDecoratorMetadata": true /* Add a polyfill for the Reflect API (examples below use reflect-metadata). */
   },
-  "include": ["./src/","resources/","out"],
+  "include": ["./src/"],
   "exclude": ["./src/__test__"]
 }

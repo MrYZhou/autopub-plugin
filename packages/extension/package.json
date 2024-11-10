@@ -40,6 +40,10 @@
       }
     ],
     "commands": [
+    {
+        "command": "autopub.chatWindow",
+        "title": "AutoPub: 聊天面板"
+        },
       {
         "command": "autopub.showPubPanel",
         "title": "AutoPub: 部署面板"
@@ -128,15 +132,14 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "clear": "pnpm rimraf ./out",
+    "clear": "pnpm rimraf ./out && pnpm rimraf ./node_modules",
     "clear:node": "pnpm rimraf ./node_modules",
     "clear:out": "rimraf ./out/extension",
     "build-rollup": "pnpm run clear:out && rollup -c",
     "package": "pnpm vsce package --no-dependencies"
   },
   "dependencies": {
-    "axios": "^1.7.2",
-    "simple-git": "^3.21.0"
+    "axios": "^1.7.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
