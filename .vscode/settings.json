@@ -8,5 +8,5 @@
   },
   // 关闭 tsc 任务自动检测，因为我们将必要的任务作为 npm 脚本
   "typescript.tsc.autoDetect": "off",
-  "workbench.colorTheme": "Default Dark Modern"
+  "workbench.colorTheme": "One Dark Pro"
 }
